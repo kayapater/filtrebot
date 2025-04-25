@@ -62,4 +62,4 @@ Eklentinin geliştirilmesi ve iyileştirilmesi sürecinde Claude 3.7 yapay zeka 
 
 ---
 
-**Not**: Bu eklenti, Twitter/X'in resmi bir ürünü değildir ve Twitter Inc. ile herhangi bir bağlantısı yoktur. Kişisel kullanım için geliştirilmiştir.
+**Not**: Bu eklenti, Twitter/X'in resmi bir ürünü değildir ve Twitter ile herhangi bir bağlantısı yoktur. Kişisel kullanım için geliştirilmiştir.
