@@ -40,15 +40,6 @@ Eklenti yüklendikten sonra Twitter/X sayfanızın sağ alt köşesinde bir ayar
 - **Uyumluluk**: Modern tarayıcılar (Chrome, Firefox, Edge, Safari)
 - **Lisans**: MIT
 
-## 🤝 Katkıda Bulunma
-
-Projeye katkıda bulunmak için:
-1. Bu repository'yi fork edin
-2. Yeni bir branch oluşturun (`git checkout -b feature/amazing-feature`)
-3. Değişikliklerinizi commit edin (`git commit -m 'Add some amazing feature'`)
-4. Branch'inizi push edin (`git push origin feature/amazing-feature`)
-5. Pull Request oluşturun
-
 ## 📞 İletişim
 
 Sorularınız veya önerileriniz için:
