@@ -25,23 +25,23 @@
 
     let settings = loadSettings();
     let stats = loadStats();
-    
+
     let isPanelOpen = false;
 
     function saveSettings(settings) {
         GM_setValue("settings", settings);
-        
+
         let keywordCount = 0;
         let accountCount = 0;
-        
+
         for (const category in settings.keywordsByCategory) {
             keywordCount += settings.keywordsByCategory[category].length;
         }
-        
+
         for (const category in settings.accountsByCategory) {
             accountCount += settings.accountsByCategory[category].length;
         }
-        
+
         stats = {
             blockedKeywords: keywordCount,
             blockedAccounts: accountCount,
@@ -49,21 +49,21 @@
             blockedKeywordsDetail: stats.blockedKeywordsDetail || [],
             blockedAccountsDetail: stats.blockedAccountsDetail || []
         };
-        
+
         GM_setValue("stats", stats);
     }
 
     function loadSettings() {
         const savedSettings = GM_getValue("settings", null);
-        
+
         if (savedSettings) {
             return savedSettings;
         }
-        
+
         const defaultSettings = {
             keywords: defaultKeywords,
             blockedAccounts: [],
-            
+
             keywordsByCategory: {
                 'genel': [],
                 'futbol': [],
@@ -79,9 +79,9 @@
                 'ozel': []
             },
             categories: defaultCategories,
-            
+
             accountDetails: {},
-            
+
             blurLevel: 8,
             warningMessage: ' İçerik Filtrelendi',
             warningColor: '#1DA1F2',
@@ -89,10 +89,10 @@
             autoUpdate: true,
             enabled: true
         };
-        
+
         return defaultSettings;
     }
-    
+
     function loadStats() {
         return GM_getValue("stats", {
             blockedKeywords: 0,
@@ -121,7 +121,7 @@
                 --shadow-color: rgba(101, 119, 134, 0.2);
                 --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             }
-            
+
             #kuae-toggle {
                 position: fixed;
                 bottom: 20px;
@@ -265,7 +265,7 @@
                 display: block;
                 animation: kuae-fadeIn 0.2s;
             }
-            
+
             #kuae-panel {
                 position: fixed;
                 top: 0;
@@ -466,7 +466,7 @@
                 from { opacity: 1; transform: translateY(0); }
                 to { opacity: 0; transform: translateY(-20px); }
             }
-            
+
             .kuae-btn {
                 background-color: var(--primary-color);
                 color: white;
@@ -574,14 +574,14 @@
                 margin-right: 8px;
                 color: var(--primary-color);
             }
-            
+
             .kuae-note-input-container {
                 display: flex;
                 flex-direction: column;
                 gap: 10px;
                 width: 100%;
             }
-            
+
             .kuae-note-username {
                 width: 100%;
                 padding: 8px 12px;
@@ -590,7 +590,7 @@
                 background-color: var(--bg-secondary);
                 color: var(--text-color);
             }
-            
+
             .kuae-note-textarea {
                 width: 100%;
                 padding: 10px 12px;
@@ -602,7 +602,7 @@
                 resize: vertical;
                 min-height: 80px;
             }
-            
+
             .kuae-note-button {
                 padding: 8px 16px;
                 background-color: var(--primary-color);
@@ -613,11 +613,11 @@
                 transition: background-color 0.2s;
                 align-self: flex-start;
             }
-            
+
             .kuae-note-button:hover {
                 background-color: var(--primary-hover);
             }
-            
+
             .kuae-note-item {
                 background-color: var(--bg-secondary);
                 border-radius: 8px;
@@ -625,19 +625,19 @@
                 margin-bottom: 10px;
                 border: 1px solid var(--border-color);
             }
-            
+
             .kuae-note-header {
                 display: flex;
                 align-items: center;
                 gap: 8px;
                 margin-bottom: 8px;
             }
-            
+
             .kuae-note-username {
                 font-weight: bold;
                 color: var(--primary-color);
             }
-            
+
             .kuae-note-content {
                 padding: 10px;
                 background-color: rgba(29, 161, 242, 0.1);
@@ -647,12 +647,12 @@
                 white-space: pre-wrap;
                 word-break: break-word;
             }
-            
+
             .kuae-note-actions {
                 display: flex;
                 gap: 8px;
             }
-            
+
             .kuae-note-actions button {
                 padding: 4px 8px;
                 border-radius: 4px;
@@ -660,51 +660,51 @@
                 cursor: pointer;
                 font-size: 12px;
             }
-            
+
             .kuae-note-edit {
                 background-color: var(--primary-color);
                 color: white;
             }
-            
+
             .kuae-note-delete {
                 background-color: var(--danger-color);
                 color: white;
             }
-            
+
             .kuae-note-block {
                 background-color: var(--warning-color);
                 color: black;
             }
-            
+
             .kuae-badge {
                 padding: 2px 6px;
                 border-radius: 10px;
                 font-size: 11px;
                 font-weight: bold;
             }
-            
+
             .kuae-badge-blocked {
                 background-color: var(--danger-color);
                 color: white;
             }
-            
+
             .kuae-badge-normal {
                 background-color: var(--success-color);
                 color: white;
             }
-            
+
             .kuae-badge-category {
                 background-color: var(--warning-color);
                 color: black;
             }
-            
+
             .kuae-empty-list {
                 padding: 20px;
                 text-align: center;
                 color: var(--text-secondary);
                 font-style: italic;
             }
-            
+
             .kuae-tooltip {
                 position: absolute;
                 z-index: 10000;
@@ -725,7 +725,7 @@
                 border: 1px solid #444;
                 transform: translateZ(0)
             }
-            
+
             .kuae-note-popup {
                 position: fixed;
                 top: 50%;
@@ -745,7 +745,7 @@
                 font-family: var(--font-family);
                 border: 1px solid #444;
             }
-            
+
             .kuae-note-popup-header {
                 display: flex;
                 justify-content: space-between;
@@ -754,13 +754,13 @@
                 padding-bottom: 12px;
                 border-bottom: 1px solid #444;
             }
-            
+
             .kuae-note-popup-title {
                 font-size: 18px;
                 font-weight: bold;
                 color: var(--primary-color);
             }
-            
+
             .kuae-note-popup-close {
                 cursor: pointer;
                 font-size: 20px;
@@ -773,12 +773,12 @@
                 border-radius: 50%;
                 transition: all 0.2s ease;
             }
-            
+
             .kuae-note-popup-close:hover {
                 background-color: rgba(255, 255, 255, 0.1);
                 color: #fff;
             }
-            
+
             .kuae-note-popup-content {
                 margin-bottom: 15px;
                 font-size: 16px;
@@ -786,7 +786,7 @@
                 white-space: pre-wrap;
                 word-break: break-word;
             }
-            
+
             .kuae-note-popup-footer {
                 display: flex;
                 justify-content: flex-end;
@@ -795,7 +795,7 @@
                 padding-top: 12px;
                 border-top: 1px solid #444;
             }
-            
+
             .kuae-note-popup-button {
                 padding: 8px 16px;
                 border-radius: 20px;
@@ -805,26 +805,26 @@
                 cursor: pointer;
                 transition: background-color 0.2s;
             }
-            
+
             .kuae-note-popup-button.primary {
                 background-color: var(--primary-color);
                 color: white;
             }
-            
+
             .kuae-note-popup-button.primary:hover {
                 background-color: var(--primary-hover);
             }
-            
+
             .kuae-note-popup-button.secondary {
                 background-color: transparent;
                 color: var(--text-color);
                 border: 1px solid var(--border-color);
             }
-            
+
             .kuae-note-popup-button.secondary:hover {
                 background-color: rgba(255, 255, 255, 0.1);
             }
-            
+
             .kuae-note-popup-overlay {
                 position: fixed;
                 top: 0;
@@ -843,37 +843,37 @@
         if (oldPopup) {
             oldPopup.remove();
         }
-        
+
         const overlay = document.createElement('div');
         overlay.className = 'kuae-note-popup-overlay';
-        
+
         const popup = document.createElement('div');
         popup.className = 'kuae-note-popup';
-        
+
         const header = document.createElement('div');
         header.className = 'kuae-note-popup-header';
-        
+
         const title = document.createElement('div');
         title.className = 'kuae-note-popup-title';
         title.textContent = `@${username} için not`;
-        
+
         const closeButton = document.createElement('div');
         closeButton.className = 'kuae-note-popup-close';
         closeButton.innerHTML = '&times;';
         closeButton.addEventListener('click', () => {
             overlay.remove();
         });
-        
+
         header.appendChild(title);
         header.appendChild(closeButton);
-        
+
         const content = document.createElement('div');
         content.className = 'kuae-note-popup-content';
         content.textContent = note;
-        
+
         const footer = document.createElement('div');
         footer.className = 'kuae-note-popup-footer';
-        
+
         const editButton = document.createElement('button');
         editButton.className = 'kuae-note-popup-button secondary';
         editButton.textContent = 'Düzenle';
@@ -885,10 +885,10 @@
                         button.click();
                     }
                 });
-                
+
                 const noteUsernameInput = document.getElementById('kuae-account-note-username');
                 const noteInput = document.getElementById('kuae-account-note');
-                
+
                 if (noteUsernameInput && noteInput) {
                     noteUsernameInput.value = username;
                     noteInput.value = note;
@@ -896,7 +896,7 @@
                 }
             } else {
                 togglePanel();
-                
+
                 setTimeout(() => {
                     const tabButtons = document.querySelectorAll('.kuae-tab-button');
                     tabButtons.forEach(button => {
@@ -904,10 +904,10 @@
                             button.click();
                         }
                     });
-                    
+
                     const noteUsernameInput = document.getElementById('kuae-account-note-username');
                     const noteInput = document.getElementById('kuae-account-note');
-                    
+
                     if (noteUsernameInput && noteInput) {
                         noteUsernameInput.value = username;
                         noteInput.value = note;
@@ -915,33 +915,33 @@
                     }
                 }, 300);
             }
-            
+
             overlay.remove();
         });
-        
+
         const closeBtn = document.createElement('button');
         closeBtn.className = 'kuae-note-popup-button primary';
         closeBtn.textContent = 'Kapat';
         closeBtn.addEventListener('click', () => {
             overlay.remove();
         });
-        
+
         footer.appendChild(editButton);
         footer.appendChild(closeBtn);
-        
+
         popup.appendChild(header);
         popup.appendChild(content);
         popup.appendChild(footer);
-        
+
         overlay.appendChild(popup);
         document.body.appendChild(overlay);
-        
+
         overlay.addEventListener('click', (e) => {
             if (e.target === overlay) {
                 overlay.remove();
             }
         });
-        
+
         document.addEventListener('keydown', function escClose(e) {
             if (e.key === 'Escape') {
                 overlay.remove();
@@ -953,9 +953,9 @@
     // Anahtar kelime kontrolü
     function containsKeyword(text) {
         if (!text) return false;
-        
+
         text = text.toLowerCase();
-        
+
         for (const category in settings.keywordsByCategory) {
             for (const keyword of settings.keywordsByCategory[category]) {
                 if (text.includes(keyword.toLowerCase())) {
@@ -967,16 +967,16 @@
                 }
             }
         }
-        
+
         return { found: false };
     }
 
     // Hesap kontrolü
     function isBlockedAccount(username) {
         if (!username) return false;
-        
+
         username = username.toLowerCase().replace('@', '');
-        
+
         for (const category in settings.accountsByCategory) {
             if (settings.accountsByCategory[category].includes(username)) {
                 return {
@@ -985,7 +985,7 @@
                 };
             }
         }
-        
+
         return { blocked: false };
     }
 
@@ -993,18 +993,18 @@
     function observeNewPosts() {
         const observer = new MutationObserver((mutations) => {
             let shouldFilter = false;
-            
+
             mutations.forEach((mutation) => {
                 if (mutation.addedNodes.length) {
                     shouldFilter = true;
                 }
             });
-            
+
             if (shouldFilter) {
                 filterPosts();
             }
         });
-        
+
         observer.observe(document.body, {
             childList: true,
             subtree: true
@@ -1014,28 +1014,28 @@
     // Gönderileri filtreleme
     function filterPosts() {
         if (!settings.enabled) return;
-        
+
         document.querySelectorAll('article').forEach(article => {
             if (article.dataset.kuaeProcessed === 'true') return;
-            
+
             article.dataset.kuaeProcessed = 'true';
-            
+
             const tweetText = article.querySelector('[data-testid="tweetText"]')?.innerText || '';
-            
+
             const usernameElement = article.querySelector('[data-testid="User-Name"] a[href*="/"]');
-            const username = usernameElement ? usernameElement.href.split('/').pop() : '';
-            
+            const username = usernameElement ? usernameElement.href.split('/').pop().toLowerCase() : '';
+
             const keywordCheck = containsKeyword(tweetText);
-            
+
             const accountCheck = isBlockedAccount(username);
-            
+
             if (keywordCheck.found || accountCheck.blocked) {
                 blurPost(article, keywordCheck, accountCheck);
-                
+
                 stats.totalBlocked++;
                 GM_setValue("stats", stats);
             }
-            
+
             if (username && settings.accountDetails[username]) {
                 addNoteIcon(article, settings.accountDetails[username]);
             }
@@ -1046,23 +1046,23 @@
     function blurPost(article, keywordCheck, accountCheck) {
         const wrapper = document.createElement('div');
         wrapper.className = 'kuae-wrapper';
-        
+
         const clone = article.cloneNode(true);
         clone.classList.add('kuae-blurred');
-        
+
         article.style.display = 'none';
-        
+
         wrapper.appendChild(clone);
-        
+
         const overlay = document.createElement('div');
         overlay.className = 'kuae-overlay';
-        
+
         overlay.innerHTML = settings.warningMessage;
-        
+
         if (settings.showReason) {
             let reasonText = '';
             let categoryBadge = '';
-            
+
             if (keywordCheck.found) {
                 reasonText = `Anahtar kelime: "${keywordCheck.keyword}"`;
                 categoryBadge = `<span class="kuae-category-badge">${keywordCheck.category}</span>`;
@@ -1070,16 +1070,16 @@
                 reasonText = `Engellenen hesap: @${article.querySelector('[data-testid="User-Name"] a[href*="/"]').href.split('/').pop()}`;
                 categoryBadge = `<span class="kuae-category-badge">${accountCheck.category}</span>`;
             }
-            
+
             if (reasonText) {
                 overlay.innerHTML += `<span class="kuae-reason">${reasonText}</span>${categoryBadge}`;
             }
         }
-        
+
         wrapper.appendChild(overlay);
-        
+
         article.parentNode.insertBefore(wrapper, article);
-        
+
         overlay.addEventListener('click', (e) => {
             e.stopPropagation();
             wrapper.style.display = 'none';
@@ -1090,22 +1090,22 @@
     // Hesap notu ikonu ekleme
     function addNoteIcon(article, accountDetails) {
         const userNameElement = article.querySelector('[data-testid="User-Name"]');
-        
+
         if (!userNameElement) return;
-        
+
         const noteIcon = document.createElement('div');
         noteIcon.className = 'kuae-note-icon';
         noteIcon.innerHTML = '📝';
         noteIcon.style.backgroundColor = settings.warningColor;
         noteIcon.style.color = 'white';
-        
+
         noteIcon.addEventListener('click', (e) => {
             e.stopPropagation();
             e.preventDefault();
-            
+
             showNotePopup(article.querySelector('[data-testid="User-Name"] a[href*="/"]').href.split('/').pop(), accountDetails.note);
         });
-        
+
         userNameElement.appendChild(noteIcon);
     }
 
@@ -1131,11 +1131,11 @@
         notification.id = 'kuae-notification';
         notification.textContent = message;
         document.body.appendChild(notification);
-        
+
         setTimeout(() => {
             notification.classList.add('show');
         }, 10);
-        
+
         setTimeout(() => {
             notification.classList.remove('show');
             setTimeout(() => {
@@ -1149,25 +1149,25 @@
         if (isPanelOpen) {
             const panel = document.getElementById('kuae-panel');
             const overlay = document.getElementById('kuae-panel-overlay');
-            
+
             if (panel) panel.classList.remove('open');
             if (overlay) overlay.classList.remove('open');
-            
+
             isPanelOpen = false;
         } else {
             if (!document.getElementById('kuae-panel')) {
                 createPanel();
                 addPanelEvents();
             }
-            
+
             const panel = document.getElementById('kuae-panel');
             const overlay = document.getElementById('kuae-panel-overlay');
-            
+
             if (panel) panel.classList.add('open');
             if (overlay) overlay.classList.add('open');
-            
+
             isPanelOpen = true;
-            
+
             updatePanelContent();
         }
     }
@@ -1178,11 +1178,11 @@
         overlay.id = 'kuae-panel-overlay';
         overlay.addEventListener('click', togglePanel);
         document.body.appendChild(overlay);
-        
+
         const panel = document.createElement('div');
         panel.id = 'kuae-panel';
         document.body.appendChild(panel);
-        
+
         const header = document.createElement('div');
         header.className = 'kuae-panel-header';
         header.innerHTML = `
@@ -1190,10 +1190,10 @@
             <button class="kuae-panel-close">&times;</button>
         `;
         panel.appendChild(header);
-        
+
         // Kapat butonu
         header.querySelector('.kuae-panel-close').addEventListener('click', togglePanel);
-        
+
         // Panel tabs
         const tabs = document.createElement('div');
         tabs.className = 'kuae-panel-tabs';
@@ -1205,20 +1205,20 @@
             <div class="kuae-panel-tab" data-tab="stats">İstatistikler</div>
         `;
         panel.appendChild(tabs);
-        
+
         // Tab click olayları
         tabs.querySelectorAll('.kuae-panel-tab').forEach(tab => {
             tab.addEventListener('click', () => {
                 // Aktif tab'ı değiştir
                 tabs.querySelectorAll('.kuae-panel-tab').forEach(t => t.classList.remove('active'));
                 tab.classList.add('active');
-                
+
                 // İlgili içeriği göster
                 panel.querySelectorAll('.kuae-panel-content').forEach(c => c.classList.remove('active'));
                 panel.querySelector(`.kuae-panel-content[data-tab="${tab.dataset.tab}"]`).classList.add('active');
             });
         });
-        
+
         // Anahtar Kelimeler tab içeriği
         const keywordsContent = document.createElement('div');
         keywordsContent.className = 'kuae-panel-content active';
@@ -1246,7 +1246,7 @@
             <div id="kuae-keywords-list" class="kuae-list"></div>
         `;
         panel.appendChild(keywordsContent);
-        
+
         // Hesaplar tab içeriği
         const accountsContent = document.createElement('div');
         accountsContent.className = 'kuae-panel-content';
@@ -1274,7 +1274,7 @@
             <div id="kuae-accounts-list" class="kuae-list"></div>
         `;
         panel.appendChild(accountsContent);
-        
+
         // Notlar tab içeriği
         const notesContent = document.createElement('div');
         notesContent.className = 'kuae-panel-content';
@@ -1293,7 +1293,7 @@
             <div id="kuae-notes-list" class="kuae-list"></div>
         `;
         panel.appendChild(notesContent);
-        
+
         // Ayarlar tab içeriği
         const settingsContent = document.createElement('div');
         settingsContent.className = 'kuae-panel-content';
@@ -1338,7 +1338,7 @@
             <div id="kuae-settings-status" class="kuae-status"></div>
         `;
         panel.appendChild(settingsContent);
-        
+
         // İstatistikler tab içeriği
         const statsContent = document.createElement('div');
         statsContent.className = 'kuae-panel-content';
@@ -1355,25 +1355,25 @@
             </div>
         `;
         panel.appendChild(statsContent);
-        
+
         // Panel olaylarını ekle
         addPanelEvents();
     }
-    
+
     // Panel olaylarını ekle
     function addPanelEvents() {
         // Kategori ekleme
         document.getElementById('kuae-add-keyword-category').addEventListener('click', () => {
             const categoryName = prompt('Kategori adı:');
-            
+
             if (categoryName && categoryName.trim()) {
                 const trimmedName = categoryName.trim();
-                
+
                 // Kategori zaten var mı kontrol et
                 if (!settings.categories.keywords.includes(trimmedName)) {
                     settings.categories.keywords.push(trimmedName);
                     settings.keywordsByCategory[trimmedName] = [];
-                    
+
                     saveSettings(settings);
                     updatePanelContent();
                     showNotification(`"${trimmedName}" kategorisi eklendi!`);
@@ -1382,18 +1382,18 @@
                 }
             }
         });
-        
+
         document.getElementById('kuae-add-account-category').addEventListener('click', () => {
             const categoryName = prompt('Kategori adı:');
-            
+
             if (categoryName && categoryName.trim()) {
                 const trimmedName = categoryName.trim();
-                
+
                 // Kategori zaten var mı kontrol et
                 if (!settings.categories.accounts.includes(trimmedName)) {
                     settings.categories.accounts.push(trimmedName);
                     settings.accountsByCategory[trimmedName] = [];
-                    
+
                     saveSettings(settings);
                     updatePanelContent();
                     showNotification(`"${trimmedName}" kategorisi eklendi!`);
@@ -1402,108 +1402,108 @@
                 }
             }
         });
-        
+
         // Anahtar kelime ekleme
         document.getElementById('kuae-add-keyword').addEventListener('click', () => {
             const keywordInput = document.getElementById('kuae-keyword-input');
             const keyword = keywordInput.value.trim();
-            
+
             if (keyword) {
                 const category = document.getElementById('kuae-keyword-category').value;
-                
+
                 if (category) {
                     settings.keywordsByCategory[category].push(keyword);
                     saveSettings(settings);
                     updatePanelContent();
                 }
-                
+
                 keywordInput.value = '';
             }
         });
-        
+
         // Toplu anahtar kelime ekleme
         document.getElementById('kuae-add-keywords-bulk').addEventListener('click', () => {
             const keywordsBulk = document.getElementById('kuae-keywords-bulk').value.trim();
             const keywords = keywordsBulk.split('\n').map(k => k.trim());
-            
+
             if (keywords.length) {
                 const category = document.getElementById('kuae-keyword-category').value;
-                
+
                 if (category) {
                     settings.keywordsByCategory[category].push(...keywords);
                     saveSettings(settings);
                     updatePanelContent();
                 }
-                
+
                 document.getElementById('kuae-keywords-bulk').value = '';
             }
         });
-        
+
         // Hesap ekleme
         document.getElementById('kuae-add-account').addEventListener('click', () => {
             const accountInput = document.getElementById('kuae-account-input');
             const account = accountInput.value.trim();
-            
+
             if (account) {
                 const category = document.getElementById('kuae-account-category').value;
-                
+
                 if (category) {
                     settings.accountsByCategory[category].push(account);
                     saveSettings(settings);
                     updatePanelContent();
                 }
-                
+
                 accountInput.value = '';
             }
         });
-        
+
         // Toplu hesap ekleme
         document.getElementById('kuae-add-accounts-bulk').addEventListener('click', () => {
             const accountsBulk = document.getElementById('kuae-accounts-bulk').value.trim();
             const accounts = accountsBulk.split('\n').map(a => a.trim());
-            
+
             if (accounts.length) {
                 const category = document.getElementById('kuae-account-category').value;
-                
+
                 if (category) {
                     settings.accountsByCategory[category].push(...accounts);
                     saveSettings(settings);
                     updatePanelContent();
                 }
-                
+
                 document.getElementById('kuae-accounts-bulk').value = '';
             }
         });
-        
+
         // Hesap notu ekleme
         document.getElementById('kuae-add-account-note').addEventListener('click', () => {
             const accountNoteUsername = document.getElementById('kuae-account-note-username').value.trim().toLowerCase();
             const accountNote = document.getElementById('kuae-account-note').value.trim();
-            
+
             if (accountNoteUsername && accountNote) {
                 // Hesap detayları nesnesi yoksa oluştur
                 if (!settings.accountDetails) {
                     settings.accountDetails = {};
                 }
-                
+
                 // Hesap detayları içinde hesap yoksa oluştur
                 if (!settings.accountDetails[accountNoteUsername]) {
                     settings.accountDetails[accountNoteUsername] = {};
                 }
-                
+
                 settings.accountDetails[accountNoteUsername].note = accountNote;
-                
+
                 // NOT: Artık hesabı otomatik olarak engellenen hesaplar listesine eklemiyoruz
                 // Sadece not ekliyoruz
-                
+
                 saveSettings(settings);
                 updatePanelContent(); // Panel içeriğini güncelle
-                
+
                 showNotification(`@${accountNoteUsername} için not eklendi!`);
                 return true;
             }
         });
-        
+
         // Ayarları kaydetme
         document.getElementById('kuae-save-settings').addEventListener('click', () => {
             const blurLevel = document.getElementById('kuae-blur-level').value;
@@ -1511,17 +1511,17 @@
             const warningColor = document.getElementById('kuae-warning-color').value;
             const showReason = document.getElementById('kuae-show-reason').checked;
             const enabled = document.getElementById('kuae-enabled').checked;
-            
+
             settings.blurLevel = blurLevel;
             settings.warningMessage = warningMessage;
             settings.warningColor = warningColor;
             settings.showReason = showReason;
             settings.enabled = enabled;
-            
+
             saveSettings(settings);
             updatePanelContent();
         });
-        
+
         // Ayarları dışa aktarma
         document.getElementById('kuae-export-settings').addEventListener('click', () => {
             const exportData = JSON.stringify(settings, null, 2);
@@ -1532,15 +1532,15 @@
             exportLink.download = 'kuae-settings.json';
             exportLink.click();
         });
-        
+
         // Ayarları içe aktarma
         document.getElementById('kuae-import-settings').addEventListener('click', () => {
             document.getElementById('kuae-import-file').click();
         });
-        
+
         document.getElementById('kuae-import-file').addEventListener('change', (e) => {
             const importFile = e.target.files[0];
-            
+
             if (importFile) {
                 const importReader = new FileReader();
                 importReader.onload = (e) => {
@@ -1552,14 +1552,14 @@
                 importReader.readAsText(importFile);
             }
         });
-        
+
         // Ayarları sıfırlama
         document.getElementById('kuae-reset-settings').addEventListener('click', () => {
             settings = loadSettings();
             saveSettings(settings);
             updatePanelContent();
         });
-        
+
         // İstatistikleri sıfırlama
         document.getElementById('kuae-reset-stats').addEventListener('click', () => {
             stats = loadStats();
@@ -1567,16 +1567,16 @@
             updatePanelContent();
         });
     }
-    
+
     // Panel içeriğini güncelle
     function updatePanelContent() {
         // Kategori seçeneklerini güncelle
         const keywordCategories = document.getElementById('kuae-keyword-category');
         const accountCategories = document.getElementById('kuae-account-category');
-        
+
         if (keywordCategories) {
             keywordCategories.innerHTML = '';
-            
+
             settings.categories.keywords.forEach(category => {
                 const option = document.createElement('option');
                 option.value = category;
@@ -1584,10 +1584,10 @@
                 keywordCategories.appendChild(option);
             });
         }
-        
+
         if (accountCategories) {
             accountCategories.innerHTML = '';
-            
+
             settings.categories.accounts.forEach(category => {
                 const option = document.createElement('option');
                 option.value = category;
@@ -1595,20 +1595,20 @@
                 accountCategories.appendChild(option);
             });
         }
-        
+
         // Anahtar kelime listesini güncelle
         const keywordsList = document.getElementById('kuae-keywords-list');
-        
+
         if (keywordsList) {
             keywordsList.innerHTML = '';
-            
+
             Object.keys(settings.keywordsByCategory).forEach(category => {
                 if (settings.keywordsByCategory[category].length > 0) {
                     const categoryHeader = document.createElement('div');
                     categoryHeader.className = 'kuae-list-category';
                     categoryHeader.textContent = category;
                     keywordsList.appendChild(categoryHeader);
-                    
+
                     settings.keywordsByCategory[category].forEach(keyword => {
                         const keywordItem = document.createElement('div');
                         keywordItem.className = 'kuae-list-item';
@@ -1620,13 +1620,13 @@
                     });
                 }
             });
-            
+
             // Kaldırma olayları
             document.querySelectorAll('.kuae-list-item-remove[data-keyword]').forEach(button => {
                 button.addEventListener('click', () => {
                     const category = button.dataset.category;
                     const keyword = button.dataset.keyword;
-                    
+
                     const index = settings.keywordsByCategory[category].indexOf(keyword);
                     if (index !== -1) {
                         settings.keywordsByCategory[category].splice(index, 1);
@@ -1636,24 +1636,24 @@
                 });
             });
         }
-        
+
         // Hesap listesini güncelle
         const accountsList = document.getElementById('kuae-accounts-list');
-        
+
         if (accountsList) {
             accountsList.innerHTML = '';
-            
+
             Object.keys(settings.accountsByCategory).forEach(category => {
                 if (settings.accountsByCategory[category].length > 0) {
                     const categoryHeader = document.createElement('div');
                     categoryHeader.className = 'kuae-list-category';
                     categoryHeader.textContent = category;
                     accountsList.appendChild(categoryHeader);
-                    
+
                     settings.accountsByCategory[category].forEach(account => {
                         const accountItem = document.createElement('div');
                         accountItem.className = 'kuae-list-item';
-                        
+
                         // Not varsa göster
                         let noteInfo = '';
                         if (settings.accountDetails && settings.accountDetails[account] && settings.accountDetails[account].note) {
@@ -1664,7 +1664,7 @@
                                 </div>
                             `;
                         }
-                        
+
                         accountItem.innerHTML = `
                             <div class="kuae-account-info">
                                 <span>@${account}</span>
@@ -1676,13 +1676,13 @@
                     });
                 }
             });
-            
+
             // Kaldırma olayları
             document.querySelectorAll('.kuae-list-item-remove[data-account]').forEach(button => {
                 button.addEventListener('click', () => {
                     const category = button.dataset.category;
                     const account = button.dataset.account;
-                    
+
                     const index = settings.accountsByCategory[category].indexOf(account);
                     if (index !== -1) {
                         settings.accountsByCategory[category].splice(index, 1);
@@ -1692,36 +1692,36 @@
                 });
             });
         }
-        
+
         // Not listesini güncelle
         const notesList = document.getElementById('kuae-notes-list');
-        
+
         if (notesList && settings.accountDetails) {
             notesList.innerHTML = '';
-            
+
             const accounts = Object.keys(settings.accountDetails);
-            
+
             if (accounts.length > 0) {
                 accounts.forEach(account => {
                     if (settings.accountDetails[account] && settings.accountDetails[account].note) {
                         const noteItem = document.createElement('div');
                         noteItem.className = 'kuae-note-item';
-                        
+
                         // Hesabın hangi kategoride olduğunu kontrol et
                         let accountCategory = '';
                         let isBlocked = false;
-                        
+
                         Object.keys(settings.accountsByCategory).forEach(category => {
                             if (settings.accountsByCategory[category].includes(account)) {
                                 accountCategory = category;
                                 isBlocked = true;
                             }
                         });
-                        
-                        const statusBadge = isBlocked ? 
-                            `<span class="kuae-badge kuae-badge-blocked">Engellendi</span>` : 
+
+                        const statusBadge = isBlocked ?
+                            `<span class="kuae-badge kuae-badge-blocked">Engellendi</span>` :
                             `<span class="kuae-badge kuae-badge-normal">Normal</span>`;
-                        
+
                         noteItem.innerHTML = `
                             <div class="kuae-note-header">
                                 <span class="kuae-note-username">@${account}</span>
@@ -1735,36 +1735,36 @@
                                 ${!isBlocked ? `<button class="kuae-note-block" data-account="${account}">Engelle</button>` : ''}
                             </div>
                         `;
-                        
+
                         notesList.appendChild(noteItem);
                     }
                 });
-                
+
                 // Not düzenleme olayları
                 document.querySelectorAll('.kuae-note-edit').forEach(button => {
                     button.addEventListener('click', () => {
                         const account = button.dataset.account;
                         const note = settings.accountDetails[account].note;
-                        
+
                         document.getElementById('kuae-account-note-username').value = account;
                         document.getElementById('kuae-account-note').value = note;
                     });
                 });
-                
+
                 // Not silme olayları
                 document.querySelectorAll('.kuae-note-delete').forEach(button => {
                     button.addEventListener('click', () => {
                         const account = button.dataset.account;
-                        
+
                         if (confirm(`@${account} için notu silmek istediğinize emin misiniz?`)) {
                             if (settings.accountDetails[account]) {
                                 delete settings.accountDetails[account].note;
-                                
+
                                 // Eğer başka bir detay yoksa, hesap detaylarını tamamen sil
                                 if (Object.keys(settings.accountDetails[account]).length === 0) {
                                     delete settings.accountDetails[account];
                                 }
-                                
+
                                 saveSettings(settings);
                                 updatePanelContent();
                                 showNotification(`@${account} için not silindi!`);
@@ -1772,12 +1772,12 @@
                         }
                     });
                 });
-                
+
                 // Hesabı engelleme olayları
                 document.querySelectorAll('.kuae-note-block').forEach(button => {
                     button.addEventListener('click', () => {
                         const account = button.dataset.account;
-                        
+
                         if (confirm(`@${account} hesabını engellemek istediğinize emin misiniz?`)) {
                             // Hesabı genel kategoriye ekle
                             if (!settings.accountsByCategory['genel'].includes(account)) {
@@ -1800,7 +1800,7 @@
         GM_registerMenuCommand('Ayarları Aç', () => {
             togglePanel();
         });
-        
+
         GM_registerMenuCommand('Filtreleri Etkinleştir/Devre Dışı Bırak', () => {
             settings.enabled = !settings.enabled;
             saveSettings(settings);
@@ -1816,29 +1816,29 @@
     function filterContent() {
         // Tweet içeriklerini filtrele
         const tweets = document.querySelectorAll('[data-testid="tweet"], [data-testid="tweetText"]');
-        
+
         tweets.forEach(tweet => {
             if (tweet.hasAttribute('data-kuae-filtered')) return;
-            
+
             const tweetText = tweet.textContent.toLowerCase();
             const tweetContainer = tweet.closest('article') || tweet.closest('[data-testid="tweet"]');
-            
+
             if (!tweetContainer) return;
-            
+
             // Kullanıcı adını bul
             const userElement = tweetContainer.querySelector('[data-testid="User-Name"], [data-testid="UserName"]');
             if (!userElement) return;
-            
+
             const userNameElement = userElement.querySelector('a[href*="/"]');
             if (!userNameElement) return;
-            
+
             const userHref = userNameElement.getAttribute('href');
             const userName = userHref.split('/').pop().toLowerCase();
-            
+
             // Anahtar kelime kontrolü
             let matchedKeyword = null;
             let matchedCategory = null;
-            
+
             Object.keys(settings.keywordsByCategory).forEach(category => {
                 settings.keywordsByCategory[category].forEach(keyword => {
                     if (tweetText.includes(keyword.toLowerCase())) {
@@ -1847,26 +1847,26 @@
                     }
                 });
             });
-            
+
             // Hesap kontrolü
             let isBlockedAccount = false;
             let accountCategory = null;
-            
+
             Object.keys(settings.accountsByCategory).forEach(category => {
                 if (settings.accountsByCategory[category].includes(userName)) {
                     isBlockedAccount = true;
                     accountCategory = category;
                 }
             });
-            
+
             // Not eklenmiş ama engellenmemiş hesapları kontrol et
             const hasNote = settings.accountDetails && settings.accountDetails[userName] && settings.accountDetails[userName].note;
-            
+
             if (matchedKeyword || isBlockedAccount && settings.enabled && !tweetContainer.hasAttribute('data-kuae-filtered')) {
                 // Tweet'i bulanıklaştır
                 tweetContainer.style.filter = `blur(${settings.blurLevel}px)`;
                 tweetContainer.style.transition = 'filter 0.3s ease';
-                
+
                 // Uyarı simgesi ekle
                 const warningIcon = document.createElement('div');
                 warningIcon.className = 'kuae-warning-icon';
@@ -1887,71 +1887,71 @@
                 warningIcon.style.zIndex = '2';
                 warningIcon.style.cursor = 'pointer';
                 warningIcon.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.2)';
-                
+
                 // Tooltip içeriği
                 let tooltipContent = settings.warningMessage;
-                
+
                 if (settings.showReason) {
                     if (matchedKeyword) {
                         tooltipContent = `Anahtar kelime: "${matchedKeyword}"`;
                     } else if (isBlockedAccount) {
                         tooltipContent = `Engellenen hesap: @${userName}`;
-                        
+
                         // Not varsa göster
                         if (hasNote) {
                             tooltipContent += `\nNot: ${settings.accountDetails[userName].note}`;
                         }
                     }
                 }
-                
+
                 warningIcon.title = tooltipContent;
-                
+
                 // Pozisyon ayarı için container'ı relative yap
                 tweetContainer.style.position = 'relative';
-                
+
                 // Simgeyi ekle
                 tweetContainer.appendChild(warningIcon);
-                
+
                 // Uyarı simgesine tıklama olayı
                 warningIcon.addEventListener('click', (e) => {
                     e.stopPropagation();
                     e.preventDefault();
-                    
+
                     // Tooltip göster
                     showTooltip(warningIcon, tooltipContent);
                 });
-                
+
                 // Tıklama olayı ekle
                 tweetContainer.addEventListener('click', (e) => {
                     // Eğer tweet zaten görünürse, olayı engelleme
                     if (tweetContainer.style.filter === 'none') return;
-                    
+
                     // Tıklamayı engelle
                     e.stopPropagation();
                     e.preventDefault();
-                    
+
                     // Bulanıklığı kaldır
                     tweetContainer.style.filter = 'none';
-                    
+
                     // İstatistikleri güncelle
                     stats.totalBlocked++;
                     saveStats(stats);
                 });
-                
+
                 // İşlendiğini belirt
                 tweet.setAttribute('data-kuae-filtered', 'true');
-                
+
                 // İstatistikleri güncelle
                 if (matchedKeyword && stats.blockedKeywordsDetail && !stats.blockedKeywordsDetail.includes(matchedKeyword)) {
                     stats.blockedKeywords++;
                     stats.blockedKeywordsDetail.push(matchedKeyword);
                 }
-                
+
                 if (isBlockedAccount && stats.blockedAccountsDetail && !stats.blockedAccountsDetail.includes(userName)) {
                     stats.blockedAccounts++;
                     stats.blockedAccountsDetail.push(userName);
                 }
-                
+
                 saveStats(stats);
             }
             // Sadece not eklenmiş hesaplar için not simgesi ekle (engellenmemiş)
@@ -1960,7 +1960,7 @@
                 const noteIcon = document.createElement('div');
                 noteIcon.className = 'kuae-note-icon';
                 noteIcon.innerHTML = '📝';
-                
+
                 // Not simgesi stillerini doğrudan uygula
                 Object.assign(noteIcon.style, {
                     position: 'absolute',
@@ -1981,46 +1981,46 @@
                     border: '2px solid rgba(255,255,255,0.3)',
                     transition: 'transform 0.2s ease, box-shadow 0.2s ease'
                 });
-                
+
                 // Hover efekti
                 noteIcon.addEventListener('mouseover', function() {
                     this.style.transform = 'scale(1.1)';
                     this.style.boxShadow = '0 3px 7px rgba(0, 0, 0, 0.4)';
                 });
-                
+
                 noteIcon.addEventListener('mouseout', function() {
                     this.style.transform = 'scale(1)';
                     this.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.3)';
                 });
-                
+
                 // Tooltip içeriği
                 const tooltipContent = `Not: ${settings.accountDetails[userName].note}`;
                 noteIcon.title = tooltipContent;
-                
+
                 // Pozisyon ayarı için container'ı relative yap
                 tweetContainer.style.position = 'relative';
-                
+
                 // Simgeyi ekle
                 tweetContainer.appendChild(noteIcon);
-                
+
                 // Not simgesine tıklama olayı
                 noteIcon.addEventListener('click', (e) => {
                     e.stopPropagation();
                     e.preventDefault();
-                    
+
                     // Not popup'ı göster
                     showNotePopup(userName, settings.accountDetails[userName].note);
                 });
-                
+
                 // İşlendiğini belirt
                 tweet.setAttribute('data-kuae-note-added', 'true');
             }
         });
-        
+
         // Profil sayfalarını filtrele
         filterProfilePages();
     }
-    
+
     // Profil sayfalarını filtreleme fonksiyonu
     function filterProfilePages() {
         const profilePage = document.querySelector('[data-testid="primaryColumn"]');
@@ -2030,26 +2030,26 @@
             if (userNameElement) {
                 const userHref = userNameElement.getAttribute('href');
                 const userName = userHref.split('/').pop().toLowerCase();
-                
+
                 // Hesap kontrolü
                 let isBlockedAccount = false;
                 let accountCategory = null;
-                
+
                 Object.keys(settings.accountsByCategory).forEach(category => {
                     if (settings.accountsByCategory[category].includes(userName)) {
                         isBlockedAccount = true;
                         accountCategory = category;
                     }
                 });
-                
+
                 // Not eklenmiş ama engellenmemiş hesapları kontrol et
                 const hasNote = settings.accountDetails && settings.accountDetails[userName] && settings.accountDetails[userName].note;
-                
+
                 if (isBlockedAccount && settings.enabled && !profilePage.hasAttribute('data-kuae-filtered')) {
                     // Profil sayfasını bulanıklaştır
                     profilePage.style.filter = `blur(${settings.blurLevel}px)`;
                     profilePage.style.transition = 'filter 0.3s ease';
-                    
+
                     // Uyarı simgesi ekle
                     const warningIcon = document.createElement('div');
                     warningIcon.className = 'kuae-warning-icon';
@@ -2070,52 +2070,52 @@
                     warningIcon.style.zIndex = '2';
                     warningIcon.style.cursor = 'pointer';
                     warningIcon.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.2)';
-                    
+
                     // Tooltip içeriği
                     let tooltipContent = `${settings.warningMessage}\nHesap: @${userName}`;
-                    
+
                     // Not varsa göster
                     if (hasNote) {
                         tooltipContent += `\nNot: ${settings.accountDetails[userName].note}`;
                     }
-                    
+
                     warningIcon.title = tooltipContent;
-                    
+
                     // Pozisyon ayarı için container'ı relative yap
                     profilePage.style.position = 'relative';
-                    
+
                     // Simgeyi ekle
                     profilePage.appendChild(warningIcon);
-                    
+
                     // Uyarı simgesine tıklama olayı
                     warningIcon.addEventListener('click', (e) => {
                         e.stopPropagation();
                         e.preventDefault();
-                        
+
                         // Tooltip göster
                         showTooltip(warningIcon, tooltipContent);
                     });
-                    
+
                     // Tıklama olayı ekle
                     profilePage.addEventListener('click', (e) => {
                         // Eğer profil zaten görünürse, olayı engelleme
                         if (profilePage.style.filter === 'none') return;
-                        
+
                         // Tıklamayı engelle
                         e.stopPropagation();
                         e.preventDefault();
-                        
+
                         // Bulanıklığı kaldır
                         profilePage.style.filter = 'none';
-                        
+
                         // İstatistikleri güncelle
                         stats.totalBlocked++;
                         saveStats(stats);
                     });
-                    
+
                     // İşlendiğini belirt
                     profilePage.setAttribute('data-kuae-filtered', 'true');
-                    
+
                     // İstatistikleri güncelle
                     if (stats.blockedAccountsDetail && !stats.blockedAccountsDetail.includes(userName)) {
                         stats.blockedAccounts++;
@@ -2129,7 +2129,7 @@
                     const noteIcon = document.createElement('div');
                     noteIcon.className = 'kuae-note-icon';
                     noteIcon.innerHTML = '📝';
-                    
+
                     // Not simgesi stillerini doğrudan uygula
                     Object.assign(noteIcon.style, {
                         position: 'absolute',
@@ -2150,55 +2150,55 @@
                         border: '2px solid rgba(255,255,255,0.3)',
                         transition: 'transform 0.2s ease, box-shadow 0.2s ease'
                     });
-                    
+
                     // Hover efekti
                     noteIcon.addEventListener('mouseover', function() {
                         this.style.transform = 'scale(1.1)';
                         this.style.boxShadow = '0 3px 7px rgba(0, 0, 0, 0.4)';
                     });
-                    
+
                     noteIcon.addEventListener('mouseout', function() {
                         this.style.transform = 'scale(1)';
                         this.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.3)';
                     });
-                    
+
                     // Tooltip içeriği
                     const tooltipContent = `Not: ${settings.accountDetails[userName].note}`;
                     noteIcon.title = tooltipContent;
-                    
+
                     // Pozisyon ayarı için container'ı relative yap
                     profilePage.style.position = 'relative';
-                    
+
                     // Simgeyi ekle
                     profilePage.appendChild(noteIcon);
-                    
+
                     // Not simgesine tıklama olayı
                     noteIcon.addEventListener('click', (e) => {
                         e.stopPropagation();
                         e.preventDefault();
-                        
+
                         // Not popup'ı göster
                         showNotePopup(userName, settings.accountDetails[userName].note);
                     });
-                    
+
                     // İşlendiğini belirt
                     profilePage.setAttribute('data-kuae-note-added', 'true');
                 }
             }
         }
     }
-    
+
     // Bildirim göster
     function showNotification(message) {
         const notification = document.createElement('div');
         notification.id = 'kuae-notification';
         notification.textContent = message;
         document.body.appendChild(notification);
-        
+
         setTimeout(() => {
             notification.classList.add('show');
         }, 10);
-        
+
         setTimeout(() => {
             notification.classList.remove('show');
             setTimeout(() => {
@@ -2209,13 +2209,13 @@
 
     // Ayarlar butonunu ekle
     createToggleButton();
-    
+
     // Menü komutlarını ekle
     registerMenuCommands();
-    
+
     // Gönderileri filtrele
     filterContent();
-    
+
     // Tooltip göster
     function showTooltip(element, content) {
         // Varsa eski tooltip'i kaldır
@@ -2223,11 +2223,11 @@
         if (oldTooltip) {
             oldTooltip.remove();
         }
-        
+
         // Tooltip oluştur
         const tooltip = document.createElement('div');
         tooltip.className = 'kuae-tooltip';
-        
+
         // Tooltip stillerini doğrudan uygula
         Object.assign(tooltip.style, {
             position: 'fixed',
@@ -2249,16 +2249,16 @@
             border: '1px solid #444',
             transform: 'translateZ(0)'
         });
-        
+
         // İçeriği satırlara böl
         const lines = content.split('\n');
-        
+
         // Not başlığı container
         const headerContainer = document.createElement('div');
         headerContainer.style.borderBottom = '1px solid #444';
         headerContainer.style.marginBottom = '12px';
         headerContainer.style.paddingBottom = '10px';
-        
+
         // Not başlığı
         if (lines.length > 0) {
             const headerElement = document.createElement('div');
@@ -2269,10 +2269,10 @@
             headerContainer.appendChild(headerElement);
             tooltip.appendChild(headerContainer);
         }
-        
+
         // Not içeriği container
         const contentContainer = document.createElement('div');
-        
+
         // Not içeriği
         for (let i = 1; i < lines.length; i++) {
             const lineElement = document.createElement('div');
@@ -2280,9 +2280,9 @@
             lineElement.style.margin = '6px 0';
             contentContainer.appendChild(lineElement);
         }
-        
+
         tooltip.appendChild(contentContainer);
-        
+
         // Kapatma butonu ekle
         const closeButton = document.createElement('div');
         closeButton.textContent = '✕';
@@ -2295,49 +2295,49 @@
         closeButton.style.fontWeight = 'bold';
         closeButton.style.padding = '4px 8px';
         closeButton.style.borderRadius = '4px';
-        
+
         closeButton.addEventListener('mouseover', function() {
             this.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
             this.style.color = '#fff';
         });
-        
+
         closeButton.addEventListener('mouseout', function() {
             this.style.backgroundColor = 'transparent';
             this.style.color = '#888';
         });
-        
+
         closeButton.addEventListener('click', function(e) {
             e.stopPropagation();
             tooltip.remove();
         });
-        
+
         tooltip.appendChild(closeButton);
-        
+
         // Tooltip'i sayfaya ekle
         document.body.appendChild(tooltip);
-        
+
         // Pozisyonu hesapla
         const rect = element.getBoundingClientRect();
-        
+
         // Tooltip boyutlarını al
         const tooltipRect = tooltip.getBoundingClientRect();
-        
+
         // Pozisyonu hesapla - fixed positioning için viewport'a göre
         let top = rect.top - tooltipRect.height - 10;
         if (top < 0) {
             top = rect.bottom + 10;
         }
-        
+
         let left = rect.left + (rect.width / 2) - (tooltipRect.width / 2);
         if (left < 10) {
             left = 10;
         } else if (left + tooltipRect.width > window.innerWidth - 10) {
             left = window.innerWidth - tooltipRect.width - 10;
         }
-        
+
         tooltip.style.top = `${top}px`;
         tooltip.style.left = `${left}px`;
-        
+
         // Dışarı tıklama ile kapat
         document.addEventListener('click', function closeTooltip(e) {
             if (!tooltip.contains(e.target) && e.target !== element) {
